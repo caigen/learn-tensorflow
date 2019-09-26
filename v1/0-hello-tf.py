@@ -1,6 +1,12 @@
-import tensorflow as tf
+"""
+ref:
+http://tensorfly.cn/tfdoc/get_started/os_setup.html
+"""
 
-hello = tf.constant('Hello, TensorFlow!')
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+hello = tf.constant("Hello, TensorFlow!")
 sess = tf.Session()
 
 print(sess.run(hello))

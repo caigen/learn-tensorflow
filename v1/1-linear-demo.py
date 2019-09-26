@@ -1,3 +1,8 @@
+"""
+ref:
+http://tensorfly.cn/tfdoc/get_started/introduction.html
+"""
+
 import tensorflow as tf
 import numpy as np
 
