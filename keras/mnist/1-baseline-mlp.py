@@ -3,6 +3,8 @@ from keras.datasets import mnist
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.utils import np_utils
+from keras.utils.vis_utils import plot_model
+
 # load data
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 # flatten 28*28 images to a 784 vector for each image
@@ -16,6 +18,8 @@ X_test = X_test / 255
 y_train = np_utils.to_categorical(y_train)
 y_test = np_utils.to_categorical(y_test)
 num_classes = y_test.shape[1]
+
+
 # define baseline model
 def baseline_model():
     # create model
@@ -25,8 +29,13 @@ def baseline_model():
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
+
+
 # build the model
 model = baseline_model()
+print(model.summary())
+plot_model(model, "1-mlp.png", show_layer_names=True, show_shapes=True)
+
 # Fit the model
 model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=200, verbose=2)
 # Final evaluation of the model

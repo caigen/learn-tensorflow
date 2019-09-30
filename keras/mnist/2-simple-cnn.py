@@ -7,6 +7,8 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.utils import np_utils
+from keras.utils.vis_utils import plot_model
+
 # load data
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 # reshape to be [samples][width][height][channels]
@@ -19,6 +21,8 @@ X_test = X_test / 255
 y_train = np_utils.to_categorical(y_train)
 y_test = np_utils.to_categorical(y_test)
 num_classes = y_test.shape[1]
+
+
 # define a simple CNN model
 def baseline_model():
     # create model
@@ -32,10 +36,15 @@ def baseline_model():
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
+
+
 # build the model
 model = baseline_model()
+print(model.summary())
+plot_model(model, "2-simple-cnn.png", show_layer_names=True, show_shapes=True)
+
 # Fit the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=200)
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=1, batch_size=200)
 # Final evaluation of the model
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("CNN Error: %.2f%%" % (100-scores[1]*100))
