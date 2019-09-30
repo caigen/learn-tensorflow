@@ -48,7 +48,7 @@ def multiple_vgg_blocks():
     # summarize model
     print(model.summary())
     # plot model architecture
-    plot_model(model, to_file="multiple_vgg_blocks.png", show_shapes=True, show_layer_names=True)
+    plot_model(model, to_file="vgg_blocks.png", show_shapes=True, show_layer_names=True)
 
 
 if __name__ == "__main__":
